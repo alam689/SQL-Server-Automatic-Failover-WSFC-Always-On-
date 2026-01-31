@@ -27,18 +27,19 @@ Step-by-Step: SQL Server Automatic Failover (WSFC + Always On)
 
 ## * ১. SQL Version এবং Edition চেক করা
   * উভয় সার্ভারে একই ভার্সন (যেমন: SQL Server 2022) এবং এডিশন (যেমন: Enterprise বা Standard) আছে কি না তা জানতে নিচের কুয়েরিটি চালান:
-    * SELECT @@VERSION AS 'SQL_Server_Details';
+    <pre> SELECT @@VERSION AS 'SQL_Server_Details';</pre>
       * or
-    * SELECT SERVERPROPERTY('ProductVersion') AS Product_Version,
+    <pre> SELECT SERVERPROPERTY('ProductVersion') AS Product_Version,
        SERVERPROPERTY('ProductLevel') AS Patch_Level,
        SERVERPROPERTY('Edition') AS SQL_Edition;
+    </pre>
 ## * ২. Collation চেক করা
 * Collation এক না হলে ডেটা ট্রান্সফার বা জয়েন করার সময় এরর আসবে। এটি চেক করতে এই কুয়েরিটি লিখুন:
-  * SELECT SERVERPROPERTY('Collation') AS Server_Collation;
+  <pre> SELECT SERVERPROPERTY('Collation') AS Server_Collation;</pre>
 ## * ৩. Database Engine এবং Agent সক্রিয় আছে কি না দেখা
 এটি চেক করার সবচেয়ে সহজ উপায় হলো SQL Server Configuration Manager অথবা SSMS ব্যবহার করা। পদ্ধতি খ: SQL Query ব্যবহার কর
 ইঞ্জিন এবং এজেন্ট সার্ভিস চলছে কি না তা জানতে এই কোডটি রান করুন:
-  * SELECT servicename, status_desc FROM sys.dm_server_services;
+  <pre> SELECT servicename, status_desc FROM sys.dm_server_services;</pre>
 
 ##  🔹 STEP 3: Enable Failover Clustering Feature
 ### On both servers:
